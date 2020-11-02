@@ -1,0 +1,18 @@
+{
+  "name": "serverless",
+  "version": "1.0.0",
+  "description": "First serverless app",
+  "author": "Martins Zeltins",
+  "license": "MIT",
+  "scripts": {
+    "serve": "netlify-lambda serve functions -c ./webpack.config.js",
+    "build": "netlify-lambda build functions -c ./webpack.config.js"
+  },
+  "devDependencies": {
+    "netlify-lambda": "^2.0.1"
+  },
+  "dependencies": {
+    "encoding": "^0.1.13",
+    "faunadb": "^3.0.1"
+  }
+}

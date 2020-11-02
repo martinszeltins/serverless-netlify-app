@@ -1,0 +1,61 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <title>Users app</title>
+        <link href="style.css" rel="stylesheet">
+        <script src="app.js"></script>
+    </head>
+
+    <body>
+        <div class="container">
+            <div>
+                <h2>Users</h2>
+                <p>A simple users app</p>
+    
+                <ul>
+                    <li class="list-group-item">Loading...</li>
+                </ul>
+
+                <div class="card p-2">
+                    <div class="input-group">
+                        <input type="text" class="form-control">
+
+                        <div class="input-group-append">
+                            <button onclick="addUser()">Add user</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            /**
+             * Fetch all users
+             **/
+            async function fetchUsers() {
+                let result = await fetch('/.netlify/functions/users/')
+                result = await result.json()
+
+                render(result)
+            }
+
+            /**
+             * Add new user
+             **/
+            async function addUser() {
+                await fetch('/.netlify/functions/add-user/', {
+                    method: 'POST',
+                    body: JSON.stringify({
+                        username: document.querySelector('input').value
+                    }),
+                })
+
+                fetchUsers()
+            }
+
+            fetchUsers()
+        </script>
+    </body>
+</html>
